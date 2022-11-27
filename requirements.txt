@@ -3,3 +3,4 @@ pytest-cov==4.0.0
 pylint==2.15.6
 black==22.10.0
 fire==0.4.0
+wikipedia==1.4.0
