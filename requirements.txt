@@ -13,3 +13,8 @@ nltk==3.7
 Jinja2==3.1.2
 altair==4.2.0
 altair_viewer
+altair_saver
+selenium
+vega-lite
+vega-cli
+canvas
