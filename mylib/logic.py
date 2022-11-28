@@ -15,7 +15,6 @@ reddit_read_only = praw.Reddit(
     user_agent=os.getenv("REDDIT_CLIENT_USER_AGENT"),
 )
 
-
 def nltk_req():
     """Download the nltk requirements."""
     nltk.download("vader_lexicon")
@@ -169,8 +168,3 @@ def sum_graph(file_name):
         .properties(width=400)
     )
     return save(graph, f"{file_name}.png")
-
-
-# if __name__ == "__main__":
-#     reddit = RedditScraper()
-#     fire.Fire(reddit)
