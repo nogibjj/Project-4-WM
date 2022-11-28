@@ -6,6 +6,7 @@ import pandas as pd
 import fire
 from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA
 import nltk
+from pprint import pprint
 
 nltk.download("vader_lexicon")
 
@@ -29,7 +30,7 @@ class RedditScraper:
         """Get sentiment from a subreddit."""
         sia = SIA()
         results = []
-        subredditx = reddit_read_only.subreddit(subred).new(limit=3)
+        subredditx = reddit_read_only.subreddit(subred).new(limit=None)
         for submission in subredditx:
             pol_score = sia.polarity_scores(submission.title)
             pol_score["headline"] = submission.title
@@ -52,6 +53,19 @@ class RedditScraper:
             f'CSV file saved to {os.getcwd()} with filename {subred}_{pd.datetime.now().strftime("%Y-%m-%d")}.csv'
         )
 
+    def chk_pos_words(self, file_name):
+        """Check the positive sentiment from a csv file."""
+        df = pd.read_csv(file_name)
+        print(f'These are the top 10 positive headlines from {file_name}')
+        pprint(list(df[df['label'] == 1].headline)[:10], width=200)
+
+    def chk_neg_words(self, file_name):
+        """Check the positive sentiment from a csv file."""
+        df = pd.read_csv(file_name)
+        print(f'These are the top 10 negative headlines from {file_name}')
+        pprint(list(df[df['label'] == -1].headline)[:10], width=200)
+
+    
 
 if __name__ == "__main__":
     reddit = RedditScraper()
